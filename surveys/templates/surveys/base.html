@@ -12,13 +12,19 @@
     <h1>Платформа опросов</h1>
 
     <nav class="profile-nav">
-        {% if request.path == '/' %}
-            <a href="/profile/">Профиль</a>
-            <a href="/register/" style="margin-left:10px;">Регистрация</a>
+        {% if request.user.is_authenticated %}
+            {% if request.path == '/' %}
+                <a href="/profile/">Профиль</a>
+            {% else %}
+                <a href="/">Главная</a>
+            {% endif %}
+            <a href="/logout/" style="margin-left:10px;">Выход</a>
         {% else %}
-            <a href="/">Главная</a>
+            <a href="/login/">Вход</a>
+            <a href="/register/" style="margin-left:10px;">Регистрация</a>
         {% endif %}
     </nav>
+
 </header>
 
 
