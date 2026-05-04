@@ -1,0 +1,15 @@
+# PyCharm
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+.venv/
+
+# SQLite (мы позже перейдём на PostgreSQL)
+db.sqlite3
+
+# Django static
+staticfiles/
