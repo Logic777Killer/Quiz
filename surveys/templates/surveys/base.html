@@ -10,7 +10,16 @@
 <body>
 <header>
     <h1>Платформа опросов</h1>
+
+    <nav class="profile-nav">
+        {% if request.path == '/' %}
+            <a href="/profile/">Профиль</a>
+        {% else %}
+            <a href="/">Главная</a>
+        {% endif %}
+    </nav>
 </header>
+
 
 <main>
     {% block content %}
