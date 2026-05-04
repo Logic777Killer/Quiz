@@ -1,0 +1,39 @@
+{% extends "surveys/base.html" %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<h2>Регистрация</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Логин:</label><br>
+    <input type="text" name="username" required><br><br>
+
+    <label>Пароль:</label><br>
+    <input type="password" name="password1" required><br><br>
+
+    <label>Повторите пароль:</label><br>
+    <input type="password" name="password2" required><br><br>
+
+    <label>Пол:</label><br>
+    <select name="gender" required>
+        <option value="male">Мужской</option>
+        <option value="female">Женский</option>
+        <option value="other">Другое</option>
+    </select><br><br>
+
+    <label>Страна:</label><br>
+    <input type="text" name="country" required><br><br>
+
+    <label>Возраст:</label><br>
+    <input type="number" name="age" min="1" max="120" required><br><br>
+
+    <button type="submit">Создать аккаунт</button>
+</form>
+
+{% if error %}
+    <p style="color:red; margin-top:15px;">{{ error }}</p>
+{% endif %}
+{% endblock %}
