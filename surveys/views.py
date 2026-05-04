@@ -11,7 +11,8 @@ def index(request):
 
 @login_required
 def profile(request):
-    return render(request, 'surveys/profile.html')
+    profile = Profile.objects.get(user=request.user)
+    return render(request, 'surveys/profile.html', {"profile": profile})
 
 
 def register(request):
@@ -63,4 +64,18 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("/")
+
+@login_required
+def edit_profile(request):
+    profile = Profile.objects.get(user=request.user)
+
+    if request.method == "POST":
+        profile.gender = request.POST.get("gender")
+        profile.country = request.POST.get("country")
+        profile.age = request.POST.get("age")
+        profile.save()
+        return redirect("/profile/")
+
+    return render(request, "surveys/edit_profile.html", {"profile": profile})
+
 

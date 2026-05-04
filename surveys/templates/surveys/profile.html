@@ -3,7 +3,13 @@
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
-    <h2>Профиль</h2>
-    <p>Здесь позже появится информация о пользователе.</p>
-    <p>Пока это заглушка.</p>
+<h2>Профиль пользователя</h2>
+
+<p><strong>Логин:</strong> {{ request.user.username }}</p>
+<p><strong>Пол:</strong> {{ profile.gender }}</p>
+<p><strong>Страна:</strong> {{ profile.country }}</p>
+<p><strong>Возраст:</strong> {{ profile.age }}</p>
+
+<br>
+<a href="/profile/edit/">Редактировать профиль</a>
 {% endblock %}
