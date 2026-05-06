@@ -20,9 +20,11 @@ class Profile(models.Model):
 
 class Topic(models.Model):
     name = models.CharField(max_length=100)
+    image = models.CharField(max_length=100, default="default.jpg")
 
     def __str__(self):
         return self.name
+
 
 
 class Survey(models.Model):

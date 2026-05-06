@@ -77,3 +77,44 @@ footer {
 .card h3 {
     margin-top: 0;
 }
+
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.topic-card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: 0.2s ease;
+    height: 260px;
+}
+
+.topic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    filter: invert(1);
+}
+
+
+.topic-image img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.topic-title {
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
