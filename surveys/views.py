@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from .models import Topic, Survey
 
 
 def index(request):
@@ -79,3 +80,15 @@ def edit_profile(request):
     return render(request, "surveys/edit_profile.html", {"profile": profile})
 
 
+def topics_list(request):
+    topics = Topic.objects.all()
+    return render(request, "surveys/topics_list.html", {"topics": topics})
+
+
+def topic_surveys(request, topic_id):
+    topic = Topic.objects.get(id=topic_id)
+    surveys = Survey.objects.filter(topic=topic)
+    return render(request, "surveys/topic_surveys.html", {
+        "topic": topic,
+        "surveys": surveys
+    })

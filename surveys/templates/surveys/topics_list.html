@@ -1,0 +1,16 @@
+{% extends "surveys/base.html" %}
+
+{% block title %}Темы{% endblock %}
+
+{% block content %}
+<h2>Темы</h2>
+
+<div class="card-grid">
+    {% for topic in topics %}
+        <a href="/topics/{{ topic.id }}/" class="card">
+            <h3>{{ topic.name }}</h3>
+        </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
