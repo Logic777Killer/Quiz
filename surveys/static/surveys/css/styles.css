@@ -222,3 +222,29 @@ main::after {
 .btn-delete:hover {
     background: #d93636;
 }
+
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.menu-btn {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    width: 300px;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.menu-btn:hover {
+    background: #0056d6;
+}

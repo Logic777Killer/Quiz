@@ -3,6 +3,21 @@
 {% block title %}Главная · Опросы{% endblock %}
 
 {% block content %}
-    <h2>Главная страница</h2>
-    <p>Это минимальная версия главной страницы платформы опросов.</p>
+
+<h2 class="topics-title">Платформа опросов</h2>
+
+<div class="main-menu">
+
+    <a href="/topics/" class="menu-btn">Перейти к списку опросов</a>
+
+    <a href="/create/" class="menu-btn">Создать опрос</a>
+
+    <a href="/stats/user-passed/" class="menu-btn">Статистика пройденных опросов</a>
+
+    <a href="/stats/my-surveys/" class="menu-btn">Статистика моих опросов</a>
+
+    <a href="/stats/all/" class="menu-btn">Статистика всех опросов</a>
+
+</div>
+
 {% endblock %}
