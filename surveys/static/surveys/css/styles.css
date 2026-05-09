@@ -209,3 +209,16 @@ main::after {
 .btn-secondary:hover {
     background: #5a6268;
 }
+
+.btn-delete {
+    background: #ff4d4d;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-delete:hover {
+    background: #d93636;
+}

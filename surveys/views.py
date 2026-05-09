@@ -141,3 +141,13 @@ def add_questions(request, survey_id):
         'q_form': q_form,
         'questions': questions
     })
+
+def delete_survey(request, survey_id):
+    survey = Survey.objects.get(id=survey_id)
+
+    if survey.author != request.user:
+        return redirect('/')
+
+    survey.delete()
+    return redirect('/')
+
