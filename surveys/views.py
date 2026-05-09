@@ -7,6 +7,7 @@ from .models import Topic, Survey
 from .forms import SurveyForm
 from .forms import QuestionForm
 from .models import Question, Choice, Answer
+from django.db.models import Count
 
 
 
@@ -197,3 +198,70 @@ def take_survey(request, survey_id, question_index):
 def start_survey(request, survey_id):
     return redirect(f'/survey/{survey_id}/question/0/')
 
+def stats_user_passed(request):
+    return render(request, 'surveys/stats_user_passed.html')
+
+
+def stats_my_surveys(request):
+    surveys = (
+        Survey.objects
+        .filter(author=request.user)
+        .annotate(
+            questions_count=Count('question', distinct=True),
+            total_answers=Count('answer', distinct=True)
+        )
+        .order_by('-created_at')
+    )
+
+    # вычисляем количество прохождений
+    for s in surveys:
+        if s.questions_count > 0:
+            s.answers_count = s.total_answers // s.questions_count
+        else:
+            s.answers_count = 0
+
+    return render(request, 'surveys/stats_my_surveys.html', {
+        'surveys': surveys
+    })
+
+
+def stats_all_surveys(request):
+    return render(request, 'surveys/stats_all_surveys.html')
+
+from django.db.models import Count
+
+def stats_my_survey_detail(request, survey_id):
+    survey = Survey.objects.get(id=survey_id, author=request.user)
+
+    questions = Question.objects.filter(survey=survey)
+
+    questions_stats = []
+
+    for q in questions:
+        choices = (
+            Choice.objects
+            .filter(question=q)
+            .annotate(votes=Count('answer'))
+        )
+
+        total_votes = sum(c.votes for c in choices) or 0
+
+        choice_stats = []
+        for c in choices:
+            percent = round(c.votes * 100 / total_votes, 1) if total_votes > 0 else 0
+            choice_stats.append({
+                'choice': c,
+                'votes': c.votes,
+                'percent': percent,
+            })
+
+        questions_stats.append({
+            'question': q,
+            'choices': choice_stats,
+            'total_votes': total_votes,
+        })
+
+    return render(request, 'surveys/stats_my_survey_detail.html', {
+        'survey': survey,
+        'questions_stats': questions_stats,
+    })

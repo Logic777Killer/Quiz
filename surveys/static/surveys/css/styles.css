@@ -248,3 +248,41 @@ main::after {
 .menu-btn:hover {
     background: #0056d6;
 }
+
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.stats-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.stats-card h3 {
+    margin-top: 0;
+}
+
+.stats-card p {
+    margin: 5px 0;
+}
+
+.stats-card-actions {
+    margin-top: 10px;
+}
+
+.stats-card .btn-primary {
+    display: inline-block;
+}
+
+.choice-stat {
+    background: #f7f7f7;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
