@@ -19,4 +19,8 @@ urlpatterns = [
     path('stats/my-surveys/', views.stats_my_surveys, name='stats_my_surveys'),
     path('stats/all/', views.stats_all_surveys, name='stats_all_surveys'),
     path('stats/my-surveys/<int:survey_id>/', views.stats_my_survey_detail, name='stats_my_survey_detail'),
+    path('stats/all/', views.stats_all_surveys, name='stats_all_surveys'),
+    path('stats/all/<int:survey_id>/', views.stats_all_surveys_detail, name='stats_all_surveys_detail'),
+    path('stats/user-passed/', views.stats_user_passed, name='stats_user_passed'),
+    path('stats/user-passed/<int:survey_id>/', views.stats_user_passed_detail, name='stats_user_passed_detail'),
 ]

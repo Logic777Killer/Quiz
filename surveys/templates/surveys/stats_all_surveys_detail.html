@@ -1,0 +1,26 @@
+{% extends "surveys/base.html" %}
+
+{% block title %}Статистика: {{ survey.title }}{% endblock %}
+
+{% block content %}
+<h2 class="topics-title">Статистика опроса: {{ survey.title }}</h2>
+
+{% for q in questions_stats %}
+    <div class="stats-card">
+        <h3>{{ q.question.text }}</h3>
+        <p><strong>Всего ответов:</strong> {{ q.total_votes }}</p>
+
+        {% for item in q.choices %}
+            <div class="choice-stat">
+                <p><strong>{{ item.choice.text }}</strong></p>
+                <p>Выбрали: {{ item.votes }}</p>
+                <p>Процент: {{ item.percent }}%</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="/stats/all/" class="btn-primary">Назад</a>
+</div>
+{% endblock %}

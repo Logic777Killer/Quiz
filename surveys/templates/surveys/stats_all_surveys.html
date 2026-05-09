@@ -5,6 +5,23 @@
 {% block content %}
 <h2 class="topics-title">Статистика всех опросов</h2>
 
-<p style="text-align:center;">Здесь будет отображаться общая статистика по всем опросам платформы.</p>
+{% if surveys %}
+    <div class="stats-list">
+        {% for s in surveys %}
+            <div class="stats-card">
+                <h3>{{ s.title }}</h3>
 
+                <p><strong>Вопросов:</strong> {{ s.questions_count }}</p>
+                <p><strong>Прохождений:</strong> {{ s.answers_count }}</p>
+                <p><strong>Создан:</strong> {{ s.created_at|date:"d.m.Y H:i" }}</p>
+
+                <div class="stats-card-actions">
+                    <a href="/stats/all/{{ s.id }}/" class="btn-primary">Подробнее</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p style="text-align:center;">Опросов пока нет.</p>
+{% endif %}
 {% endblock %}
