@@ -1,0 +1,15 @@
+{% extends "surveys/base.html" %}
+{% load static %}
+
+{% block title %}Создать опрос{% endblock %}
+
+{% block content %}
+<h2 class="topics-title">Создание опроса</h2>
+
+<form method="post" class="form-block">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn-primary">Создать</button>
+</form>
+
+{% endblock %}

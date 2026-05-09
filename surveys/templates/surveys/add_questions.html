@@ -1,0 +1,62 @@
+{% extends "surveys/base.html" %}
+{% load static %}
+
+{% block title %}Добавление вопросов{% endblock %}
+
+{% block content %}
+
+<h2 class="topics-title">Добавление вопросов: {{ survey.title }}</h2>
+
+<div class="form-block">
+    <form method="post">
+        {% csrf_token %}
+        {{ q_form.as_p }}
+
+        <h4>Варианты ответа:</h4>
+
+        <div id="choices-container">
+            <input type="text" name="choices[]" class="form-input" placeholder="Вариант 1">
+            <input type="text" name="choices[]" class="form-input" placeholder="Вариант 2">
+        </div>
+
+        <button type="button" class="btn-secondary" onclick="addChoice()">Добавить вариант</button>
+
+        <br><br>
+        <button type="submit" class="btn-primary">Добавить вопрос</button>
+    </form>
+</div>
+
+<h3 style="text-align:center; margin-top:40px;">Уже добавленные вопросы</h3>
+
+<ul class="questions-list">
+    {% for q in questions %}
+        <li>
+            <strong>{{ q.text }}</strong>
+            <ul>
+                {% for c in q.choice_set.all %}
+                    <li>{{ c.text }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% empty %}
+        <p style="text-align:center;">Пока нет вопросов</p>
+    {% endfor %}
+</ul>
+
+<div style="text-align:center; margin-top:30px;">
+    <a href="/" class="btn-primary">Завершить</a>
+</div>
+
+<script>
+function addChoice() {
+    const container = document.getElementById('choices-container');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'choices[]';
+    input.className = 'form-input';
+    input.placeholder = 'Новый вариант';
+    container.appendChild(input);
+}
+</script>
+
+{% endblock %}

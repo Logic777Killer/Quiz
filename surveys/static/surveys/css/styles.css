@@ -111,10 +111,101 @@ footer {
     object-fit: cover;
 }
 
-.topic-title {
-    padding: 15px;
-    font-size: 18px;
-    font-weight: 600;
+.topics-title {
     text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
+main {
+    position: relative;
+}
+
+main::before {
+    content: "ТЕМЫ";
+    position: absolute;
+    left: -200px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    font-size: 180px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+    user-select: none;
+}
+
+
+main::after {
+    content: "ТЕМЫ";
+    position: absolute;
+    right: -200px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-size: 180px;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+    user-select: none;
+}
+
+
+.form-block {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background: #0056d6;
+}
+
+.questions-list {
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.questions-list li {
+    margin-bottom: 10px;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
