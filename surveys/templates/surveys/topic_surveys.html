@@ -10,7 +10,7 @@
         <div class="card">
             <h3>{{ survey.title }}</h3>
             <p>{{ survey.description }}</p>
-            <button>Пройти</button>
+            <a href="/survey/{{ survey.id }}/" class="btn-primary">Пройти</a>
             {% if survey.author == request.user %}
                 <a href="/survey/{{ survey.id }}/delete/" class="btn-delete">Удалить</a>
             {% endif %}

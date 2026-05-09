@@ -13,4 +13,6 @@ urlpatterns = [
     path('create/', views.create_survey, name='create_survey'),
     path('survey/<int:survey_id>/add-questions/', views.add_questions, name='add_questions'),
     path('survey/<int:survey_id>/delete/', views.delete_survey, name='delete_survey'),
+    path('survey/<int:survey_id>/', views.start_survey, name='start_survey'),
+    path('survey/<int:survey_id>/question/<int:question_index>/', views.take_survey, name='take_survey'),
 ]

@@ -6,7 +6,7 @@ from .models import Profile
 from .models import Topic, Survey
 from .forms import SurveyForm
 from .forms import QuestionForm
-from .models import Question, Choice
+from .models import Question, Choice, Answer
 
 
 
@@ -150,4 +150,50 @@ def delete_survey(request, survey_id):
 
     survey.delete()
     return redirect('/')
+
+def take_survey(request, survey_id, question_index):
+    survey = Survey.objects.get(id=survey_id)
+    questions = list(Question.objects.filter(survey=survey))
+
+    if not questions:
+        return render(request, 'surveys/empty_survey.html')
+
+    if question_index >= len(questions):
+        return render(request, 'surveys/survey_finished.html')
+
+    question = questions[question_index]
+    choices = Choice.objects.filter(question=question)
+
+    if request.method == 'POST':
+        choice_id = request.POST.get('choice')
+
+        if not choice_id:
+            return render(request, 'surveys/take_survey.html', {
+                'survey': survey,
+                'question': question,
+                'choices': choices,
+                'error': 'Выберите вариант ответа',
+                'question_index': question_index,
+                'total_questions': len(questions)
+            })
+
+        Answer.objects.create(
+            survey=survey,
+            choice_id=choice_id,
+            user=request.user
+        )
+
+        # переходим к следующему вопросу
+        return redirect(f'/survey/{survey.id}/question/{question_index + 1}/')
+
+    return render(request, 'surveys/take_survey.html', {
+        'survey': survey,
+        'question': question,
+        'choices': choices,
+        'question_index': question_index,
+        'total_questions': len(questions)
+    })
+
+def start_survey(request, survey_id):
+    return redirect(f'/survey/{survey_id}/question/0/')
 
